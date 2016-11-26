@@ -1,0 +1,6 @@
+[package]
+name = "rusty_crc"
+version = "0.1.0"
+authors = ["F3real <stefan92ff@yandex.com>"]
+
+[dependencies]
