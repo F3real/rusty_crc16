@@ -33,17 +33,17 @@ impl Crc16 {
     ///
     /// # Arguments
     ///
-    /// * `bytes` - A byte array whose value are we calculating.
+    /// * `bytes` - A byte array whose value is being calculated.
     pub fn calculate(&self, bytes: &[u8]) -> u16 {
         self.calculate_rolling(bytes, self.initial_reminder)
     }
 
-    /// Calculates CRC16 value for given byte array, but assumes we 
-    /// are continuing calculation from previous state (multiple_parts)
+    /// Calculates CRC16 value for given byte array, but assumes 
+    /// calculation is resumed from previous state (multiple_parts)
     ///
     /// # Arguments
     ///
-    /// * `bytes` - A byte array whose value are we calculating.
+    /// * `bytes` - A byte array whose value is being calculated.
     /// * `current_value` - A CRC16 value obtained when calculating CRC16 of 
     /// previous part.
     pub fn calculate_rolling(&self, bytes: &[u8], current_value: u16) -> u16 {
@@ -74,9 +74,9 @@ impl Crc16 {
     ///
     /// # Arguments
     ///
-    /// * `bytes` - A byte array whose value are we are checking.
+    /// * `bytes` - A byte array whose value is being checked.
     ///
-    /// *Note*: We assume that last two bytes in array are CRC16 value that 
+    /// *Note*: Assuming that last two bytes in array are CRC16 value that 
     /// was appended, this only works if whole data we are checking is in byte
     /// array. For larger files we can check validity by calculating CRC value
     /// again and checking if it is 0.
