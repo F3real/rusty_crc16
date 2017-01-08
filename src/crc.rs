@@ -1,5 +1,4 @@
 
-
 pub struct Crc16 {
     pub divisor: u16,
     pub initial_reminder: u16,
@@ -10,8 +9,11 @@ pub struct Crc16 {
 }
 
 impl Crc16 {
-    
-    
+
+    /// Precomputes table for CRC calculation
+    ///
+    /// *Note*: Calling calcuate CRC without having precomputed table will result
+    /// in panic.
     pub fn create_table(&mut self) {
         for i in 0..256 {
             let mut value: u16 = i;
@@ -27,12 +29,28 @@ impl Crc16 {
         }
     }
 
-
+    /// Calculates CRC16 value for given byte array
+    ///
+    /// # Arguments
+    ///
+    /// * `bytes` - A byte array whose value are we calculating.
     pub fn calculate(&self, bytes: &[u8]) -> u16 {
+        self.calculate_rolling(bytes, self.initial_reminder)
+    }
+
+    /// Calculates CRC16 value for given byte array, but assumes we 
+    /// are continuing calculation from previous state (multiple_parts)
+    ///
+    /// # Arguments
+    ///
+    /// * `bytes` - A byte array whose value are we calculating.
+    /// * `current_value` - A CRC16 value obtained when calculating CRC16 of 
+    /// previous part.
+    pub fn calculate_rolling(&self, bytes: &[u8], current_value: u16) -> u16 {
          assert_eq!(self.table.is_empty(), false, "Table was not initialized.");
          assert_eq!(self.table.len(), 256, "Table size was incorrect.");
 
-         let mut value: u16 = self.initial_reminder;
+         let mut value: u16 = current_value;
          for &i in bytes.iter() {
              let current_byte: u8 = if self.reversed_input {
                  reflect(i as u16, 8) as u8
@@ -51,7 +69,17 @@ impl Crc16 {
          }
     }
 
-
+    /// Checks if byte array has valid CRC appended
+    /// are continuing calculation from previous state (multiple_parts)
+    ///
+    /// # Arguments
+    ///
+    /// * `bytes` - A byte array whose value are we are checking.
+    ///
+    /// *Note*: We assume that last two bytes in array are CRC16 value that 
+    /// was appended, this only works if whole data we are checking is in byte
+    /// array. For larger files we can check validity by calculating CRC value
+    /// again and checking if it is 0.
     pub fn check(&self, bytes: &[u8]) -> bool {
         return self.calculate(bytes) == 0u16;
     }        
@@ -68,6 +96,6 @@ fn reflect(data: u16, bit_size: u8) -> u16
 		}
     }
 
-	reflection
+    reflection
 }
 

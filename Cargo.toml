@@ -1,5 +1,5 @@
 [package]
-name = "rusty_crc"
+name = "rusty_crc16"
 version = "0.1.0"
 authors = ["F3real <stefan92ff@yandex.com>"]
 

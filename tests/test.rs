@@ -1,10 +1,10 @@
-extern crate rusty_crc;
+extern crate rusty_crc16;
 
 #[cfg(test)]
 mod tests {
 
-    use rusty_crc::crc::Crc16;
-    use rusty_crc::crc_builder::CrcBuilder;
+    use rusty_crc16::crc::Crc16;
+    use rusty_crc16::crc_builder::CrcBuilder;
     
     
     #[test]
@@ -31,4 +31,16 @@ mod tests {
         assert_eq!(crc.check(raw_bytes), true, "CRC verification failed.");
     }
 
+
+    #[test]
+    fn check_multi_part_input() {          
+        let crc : Crc16 =  CrcBuilder::generate_crc("crc16_ccitt_false").unwrap();
+
+        let mut res = crc.calculate("12345".as_bytes());
+        res = crc.calculate_rolling("6789".as_bytes(), res);
+        assert_eq!(res, 0x29B1, "Incorrectly calculated CRC.");
+
+        let raw_bytes: &[u8] = &[0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x29, 0xB1];
+        assert_eq!(crc.check(raw_bytes), true, "CRC verification failed.");
+    }
 }
