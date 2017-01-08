@@ -92,8 +92,8 @@ fn reflect(data: u16, bit_size: u8) -> u16
 
     for i in 0..bit_size {
         if (data >> i) & 0x01 == 1 {
-			reflection |= 1 << ((bit_size - 1) - i);
-		}
+            reflection |= 1 << ((bit_size - 1) - i);
+        }
     }
 
     reflection
