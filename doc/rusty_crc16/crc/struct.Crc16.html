@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Crc16` struct in crate `rusty_crc16`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Crc16">
+
+    <title>rusty_crc16::crc::Crc16 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>rusty_crc16</a>::<wbr><a href='index.html'>crc</a></p><script>window.sidebarCurrent = {name: 'Crc16', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>rusty_crc16</a>::<wbr><a href='index.html'>crc</a>::<wbr><a class='struct' href=''>Crc16</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/rusty_crc16/crc.rs.html#2-9' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Crc16 {
+    pub divisor: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub initial_reminder: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+    pub table: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;,
+    pub reversed_input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,
+    pub reverser_output: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,
+    pub xorout: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,
+}</pre><h2 class='fields'>Fields</h2><span id='structfield.divisor' class='structfield'>
+                           <span id='divisor.v' class='invisible'>
+                           <code>divisor: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.initial_reminder' class='structfield'>
+                           <span id='initial_reminder.v' class='invisible'>
+                           <code>initial_reminder: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.table' class='structfield'>
+                           <span id='table.v' class='invisible'>
+                           <code>table: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;</code>
+                           </span></span><span class='stab '></span><span id='structfield.reversed_input' class='structfield'>
+                           <span id='reversed_input.v' class='invisible'>
+                           <code>reversed_input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.reverser_output' class='structfield'>
+                           <span id='reverser_output.v' class='invisible'>
+                           <code>reverser_output: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code>
+                           </span></span><span class='stab '></span><span id='structfield.xorout' class='structfield'>
+                           <span id='xorout.v' class='invisible'>
+                           <code>xorout: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code>
+                           </span></span><span class='stab '></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../rusty_crc16/crc/struct.Crc16.html' title='rusty_crc16::crc::Crc16'>Crc16</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/rusty_crc16/crc.rs.html#11-87' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.create_table' class='method'><span id='create_table.v' class='invisible'><code>fn <a href='#method.create_table' class='fnname'>create_table</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Precomputes table for CRC calculation</p>
+
+<p><em>Note</em>: Calling calcuate CRC without having precomputed table will result
+in panic.</p>
+</div><h4 id='method.calculate' class='method'><span id='calculate.v' class='invisible'><code>fn <a href='#method.calculate' class='fnname'>calculate</a>(&amp;self, bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code></span></h4>
+<div class='docblock'><p>Calculates CRC16 value for given byte array</p>
+
+<h1 id='arguments' class='section-header'><a href='#arguments'>Arguments</a></h1>
+<ul>
+<li><code>bytes</code> - A byte array whose value is being calculated.</li>
+</ul>
+</div><h4 id='method.calculate_rolling' class='method'><span id='calculate_rolling.v' class='invisible'><code>fn <a href='#method.calculate_rolling' class='fnname'>calculate_rolling</a>(&amp;self, bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, current_value: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code></span></h4>
+<div class='docblock'><p>Calculates CRC16 value for given byte array, but assumes
+calculation is resumed from previous state (multiple_parts)</p>
+
+<h1 id='arguments-1' class='section-header'><a href='#arguments-1'>Arguments</a></h1>
+<ul>
+<li><code>bytes</code> - A byte array whose value is being calculated.</li>
+<li><code>current_value</code> - A CRC16 value obtained when calculating CRC16 of 
+previous part.</li>
+</ul>
+</div><h4 id='method.check' class='method'><span id='check.v' class='invisible'><code>fn <a href='#method.check' class='fnname'>check</a>(&amp;self, bytes: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>Checks if byte array has valid CRC appended
+are continuing calculation from previous state (multiple_parts)</p>
+
+<h1 id='arguments-2' class='section-header'><a href='#arguments-2'>Arguments</a></h1>
+<ul>
+<li><code>bytes</code> - A byte array whose value is being checked.</li>
+</ul>
+
+<p><em>Note</em>: Assuming that last two bytes in array are CRC16 value that 
+was appended, this only works if whole data we are checking is in byte
+array. For larger files we can check validity by calculating CRC value
+again and checking if it is 0.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "rusty_crc16";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
