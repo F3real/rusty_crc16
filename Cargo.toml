@@ -1,9 +1,10 @@
 [package]
 name = "rusty_crc16"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["F3real <stefan92ff@yandex.com>"]
 readme = "README.md"
 repository = "https://github.com/F3real/rusty_crc16"
+documentation = "https://f3real.github.io/rusty_crc16/"
 keywords = ["crc", "crc16", "crc-16"]
 license = "MIT"
 description = "Simple CRC-16 library written in rust"
